@@ -3,10 +3,15 @@ function getInitial(name) {
 }
 
 function createSlug(str) {
-    return str.toLowerCase()
+    return str.toLowerCase().replace(/\s/, "-")
+}
+
+function avarange(arr) {
+    return arr.reduce((acc, num) => acc + num, 0) / arr.length
 }
 
 module.exports = {
     getInitial,
-    createSlug
+    createSlug,
+    avarange
 }

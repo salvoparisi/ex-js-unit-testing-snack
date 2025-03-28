@@ -1,30 +1,46 @@
 const { getInitial, createSlug, avarange, isPalindrome, findPostById } = require("./snacks.js")
 
-test("La funzione getInitials restituisce le iniziali di un nome completo.", () => {
-    expect(getInitial("Marco")).toBe("M")
-    expect(getInitial("luca")).toBe("L")
+describe("Test per recuperare le iniziali di un nome", () => {
+    test("La funzione getInitials restituisce le iniziali di un nome completo.", () => {
+        expect(getInitial("Marco")).toBe("M")
+        expect(getInitial("luca")).toBe("L")
+    })
 })
 
-test("La funzione createSlug restituisce una stringa in lowercase.", () => {
-    expect(createSlug("LoWeRcAsE")).toBe("lowercase")
+describe("Test per createSlug", () => {
+    test("La funzione createSlug restituisce una stringa in lowercase.", () => {
+        expect(createSlug("LoWeRcAsE")).toBe("lowercase")
+    })
+
+    test("La funzione createSlug sostituisce gli spazi con -.", () => {
+        expect(createSlug("Create Slug")).toBe("create-slug")
+    })
+
+    test("La funzione createSlug lancia un errore se il titolo è vuoto o non valido.", () => {
+        expect(() => createSlug("")).toThrow(Error)
+    })
 })
 
-test("La funzione average calcola la media aritmetica di un array di numeri.", () => {
-    expect(avarange([1, 2, 3, 4, 5])).toBe(3)
+describe("Calcolo della media", () => {
+    test("La funzione average calcola la media aritmetica di un array di numeri.", () => {
+        expect(avarange([1, 2, 3, 4, 5])).toBe(3)
+    })
 })
 
-test("La funzione createSlug sostituisce gli spazi con -.", () => {
-    expect(createSlug("Create Slug")).toBe("create-slug")
+describe("Verifica Palindromo", () => {
+    test("La funzione isPalindrome verifica se una stringa è un palindromo.", () => {
+        expect(isPalindrome("Ciao")).toBeFalsy()
+        expect(isPalindrome("Osso")).toBeTruthy()
+    })
 })
 
-test("La funzione isPalindrome verifica se una stringa è un palindromo.", () => {
-    expect(isPalindrome("Ciao")).toBeFalsy()
-    expect(isPalindrome("Osso")).toBeTruthy()
+describe("Trovare un post dal Id", () => {
+    test("La funzione findPostById restituisce il post corretto dato l’array di post e l’id", () => {
+        expect(findPostById(posts, 2)).toBe(posts[1])
+    })
 })
 
-test("La funzione createSlug lancia un errore se il titolo è vuoto o non valido.", () => {
-    expect(() => createSlug("")).toThrow(Error)
-})
+
 
 const posts = [
     {
@@ -50,6 +66,3 @@ const posts = [
     }
 ];
 
-test("La funzione findPostById restituisce il post corretto dato l’array di post e l’id", () => {
-    expect(findPostById(posts, 2)).toBe(posts[1])
-})
